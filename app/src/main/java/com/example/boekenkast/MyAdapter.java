@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -28,16 +29,19 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(MyAdapter.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(final MyAdapter.ViewHolder viewHolder, int i) {
         viewHolder.title.setText(galleryList.get(i).getImage_title());
         //viewHolder.img.setScaleType(ImageView.ScaleType.CENTER_CROP);
         viewHolder.img.setImageResource((galleryList.get(i).getImage_ID()));
         viewHolder.img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context,"Open book details",Toast.LENGTH_SHORT).show();
+                Navigation.findNavController(v).navigate(R.id.bookDetailsFragment);
+                //Toast.makeText(context,"Open book details",Toast.LENGTH_SHORT).show();
             }
         });
+
+
     }
 
     @Override
