@@ -20,10 +20,10 @@ import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link main#newInstance} factory method to
+ * Use the {@link MainFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class main extends Fragment {
+public class MainFragment extends Fragment {
 
     private final String image_titles[] = {
             "Ready Player One",
@@ -56,13 +56,13 @@ public class main extends Fragment {
 
     Boolean isAllFabsVisible;
 
-    public main() {
+    public MainFragment() {
         // Required empty public constructor
     }
 
 
-    public static main newInstance() {
-        main fragment = new main();
+    public static MainFragment newInstance() {
+        MainFragment fragment = new MainFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -122,6 +122,7 @@ public class main extends Fragment {
                             addBookText.setVisibility(View.VISIBLE);
                             scanBarcodeText.setVisibility(View.VISIBLE);
 
+                            mAddFab.setImageResource(R.drawable.ic_baseline_close_24);
                             isAllFabsVisible = true;
                         } else {
                             mScanBarcodeFab.hide();
@@ -129,6 +130,7 @@ public class main extends Fragment {
                             addBookText.setVisibility(View.GONE);
                             scanBarcodeText.setVisibility(View.GONE);
 
+                            mAddFab.setImageResource((R.drawable.ic_baseline_add_24));
                             isAllFabsVisible = false;
                         }
                     }
@@ -138,7 +140,7 @@ public class main extends Fragment {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Navigation.findNavController(view).navigate(R.id.addBookFragment);
+                        Navigation.findNavController(view).navigate(R.id.cameraFragment);
                     }
                 });
 

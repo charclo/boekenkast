@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/main"
-        android:name="com.example.boekenkast.main"
+        android:name="com.example.boekenkast.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
         <action
@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_main_to_addBookFragment"
             app:destination="@id/addBookFragment" />
+        <action
+            android:id="@+id/action_main_to_cameraFragment"
+            app:destination="@id/cameraFragment" />
     </fragment>
     <fragment
         android:id="@+id/bookDetailsFragment"
@@ -27,4 +30,9 @@
         android:name="com.example.boekenkast.AddBookFragment"
         android:label="fragment_add_book"
         tools:layout="@layout/fragment_add_book" />
+    <fragment
+        android:id="@+id/cameraFragment"
+        android:name="com.example.boekenkast.CameraFragment"
+        android:label="fragment_camera"
+        tools:layout="@layout/fragment_camera" />
 </navigation>
