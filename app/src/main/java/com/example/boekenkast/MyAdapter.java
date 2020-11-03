@@ -30,8 +30,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(final MyAdapter.ViewHolder viewHolder, int i) {
-        viewHolder.title.setText(galleryList.get(i).getImage_title());
-        //viewHolder.img.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        //viewHolder.title.setText(galleryList.get(i).getImage_title());
+        viewHolder.img.setScaleType(ImageView.ScaleType.CENTER_CROP);
         viewHolder.img.setImageResource((galleryList.get(i).getImage_ID()));
         viewHolder.img.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,12 +50,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        private TextView title;
+        //private TextView title;
         private ImageView img;
         public ViewHolder(View view) {
             super(view);
 
-            title = (TextView)view.findViewById(R.id.title);
+            //title = (TextView)view.findViewById(R.id.title);
             img = (ImageView) view.findViewById(R.id.img);
         }
     }

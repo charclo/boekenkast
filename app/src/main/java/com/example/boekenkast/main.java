@@ -3,13 +3,16 @@ package com.example.boekenkast;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -48,7 +51,10 @@ public class main extends Fragment {
 
     };
 
-    FloatingActionButton mAddFab;
+    FloatingActionButton mAddFab, mScanBarcodeFab, mAddBookFab;
+    TextView scanBarcodeText, addBookText;
+
+    Boolean isAllFabsVisible;
 
     public main() {
         // Required empty public constructor
@@ -70,9 +76,11 @@ public class main extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        setHasOptionsMenu(true);
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_main, container, false);
-        mAddFab = root.findViewById(R.id.fab);
+
+        AddFabButtons(root);
+
         RecyclerView recyclerView = root.findViewById(R.id.book_gallery);
         recyclerView.setHasFixedSize(true);
 
@@ -83,6 +91,64 @@ public class main extends Fragment {
         recyclerView.setAdapter(adapter);
 
         return root;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu, menu) ;
+    }
+
+    private void AddFabButtons(ViewGroup root){
+        mAddFab = root.findViewById(R.id.fab);
+        mScanBarcodeFab = root.findViewById(R.id.add_alarm_fab);
+        mAddBookFab = root.findViewById(R.id.add_person_fab);
+        addBookText = root.findViewById(R.id.add_alarm_action_text);
+        scanBarcodeText = root.findViewById(R.id.add_person_action_text);
+
+        mScanBarcodeFab.setVisibility(View.GONE);
+        mAddBookFab.setVisibility(View.GONE);
+        addBookText.setVisibility(View.GONE);
+        scanBarcodeText.setVisibility(View.GONE);
+
+        isAllFabsVisible = false;
+
+        mAddFab.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (!isAllFabsVisible) {
+                            mScanBarcodeFab.show();
+                            mAddBookFab.show();
+                            addBookText.setVisibility(View.VISIBLE);
+                            scanBarcodeText.setVisibility(View.VISIBLE);
+
+                            isAllFabsVisible = true;
+                        } else {
+                            mScanBarcodeFab.hide();
+                            mAddBookFab.hide();
+                            addBookText.setVisibility(View.GONE);
+                            scanBarcodeText.setVisibility(View.GONE);
+
+                            isAllFabsVisible = false;
+                        }
+                    }
+                });
+
+        mScanBarcodeFab.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Navigation.findNavController(view).navigate(R.id.addBookFragment);
+                    }
+                });
+
+        mAddBookFab.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Navigation.findNavController(view).navigate(R.id.addBookFragment);
+                    }
+                });
     }
 
     private ArrayList<CreateList> prepareData(){
