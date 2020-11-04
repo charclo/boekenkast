@@ -1,4 +1,4 @@
-package com.example.boekenkast;
+package com.michaelloic.boekenkast;
 
 public class CreateList {
 

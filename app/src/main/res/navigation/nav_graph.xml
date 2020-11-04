@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/main"
-        android:name="com.example.boekenkast.MainFragment"
+        android:name="com.michaelloic.boekenkast.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
         <action
@@ -22,17 +22,21 @@
     </fragment>
     <fragment
         android:id="@+id/bookDetailsFragment"
-        android:name="com.example.boekenkast.BookDetailsFragment"
+        android:name="com.michaelloic.boekenkast.BookDetailsFragment"
         android:label="fragment_book_details"
-        tools:layout="@layout/fragment_book_details" />
+        tools:layout="@layout/fragment_book_details">
+
+        <argument android:name="book"
+            app:argType="com.michaelloic.boekenkast.Book"/>
+    </fragment>
     <fragment
         android:id="@+id/addBookFragment"
-        android:name="com.example.boekenkast.AddBookFragment"
+        android:name="com.michaelloic.boekenkast.AddBookFragment"
         android:label="fragment_add_book"
         tools:layout="@layout/fragment_add_book" />
     <fragment
         android:id="@+id/cameraFragment"
-        android:name="com.example.boekenkast.CameraFragment"
+        android:name="com.michaelloic.boekenkast.CameraFragment"
         android:label="fragment_camera"
         tools:layout="@layout/fragment_camera" />
 </navigation>

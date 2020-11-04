@@ -1,4 +1,4 @@
-package com.example.boekenkast;
+package com.michaelloic.boekenkast;
 
 import org.junit.Test;
 
